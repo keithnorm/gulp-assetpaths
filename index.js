@@ -45,6 +45,10 @@
 	{ exp: /(:\s*("(.*?)"))/gi,
 	  captureGroup : 2,
 	  templateCheck: false
+	},
+  { exp : /(<\s*)(.*?)\bhref\s*=\s*((["{0,1}|'{0,1}]).*?\4)(.*?)>/gi,
+	  captureGroup : 3,
+	  templateCheck : /\bhref=["']\//
 	}];
 
 	//create custom attributes expressions
@@ -71,7 +75,7 @@
 	function isRelative(string, insertIndex){
 		return (string.indexOf('/') === -1 || string.indexOf('/') > insertIndex);
 	}
-	
+
 	function getInsertIndex(string){
 		if(string.search(/^.{0,1}\s*("|')/) !== -1){
 			//check to see if template not using interpolated strings

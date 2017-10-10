@@ -46,9 +46,9 @@
 	  captureGroup : 2,
 	  templateCheck: false
 	},
-  { exp : /(<\s*)(.*?)\bhref\s*=\s*((["{0,1}|'{0,1}]).*?\4)(.*?)>/gi,
+  { exp : /(<a)(.*?)\bhref\s*=\s*((["{0,1}|'{0,1}]).*?\4)(.*?)>/gi,
 	  captureGroup : 3,
-	  templateCheck : /\bhref=["']\//
+	  templateCheck : /<a.*\bhref=["']\//
 	}];
 
 	//create custom attributes expressions
@@ -73,7 +73,7 @@
 	}
 
 	function isRelative(string, insertIndex){
-		return (string.indexOf('/') === -1 || string.indexOf('/') > insertIndex);
+		return string.replace(/[^a-zA-Z ]/g, "").indexOf('http') != 0 && (string.indexOf('/') === -1 || string.indexOf('/') > insertIndex);
 	}
 
 	function getInsertIndex(string){
@@ -119,7 +119,9 @@
 			if(replacementCheck(cGroup, match, regEx)){
 				if(!ignoreUrl(cGroup)){
 					return match.replace(cGroup, function(match){
-						match = match.replace(rootRegEx, "").trim();
+            if (match.match(rootRegEx).index == 0) {
+			        match = match.replace(rootRegEx, "").trim();
+            }
 						return insertPath(match,file);
 					});
 				}

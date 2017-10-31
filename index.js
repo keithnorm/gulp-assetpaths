@@ -34,7 +34,7 @@
 	  captureGroup : 3,
 	  templateCheck : /((\bbackground|\bbackground-image)\s*:\s*?.*)\burl\s*\(.*?\)/
 	},
-	{ exp : /((<\s*){0,1}\bscript)(.*?)\bsrc\s*=\s*((["{0,1}|'{0,1}]).*?\5)/gi,
+	{ exp : /((<\s*){0,1}\bscript)(.*?)\bsrc\s*=\s*((["{0,1}|'{0,1}])(?!http)(?!\/\/).*?\5)/gi,
 	  captureGroup : 4,
 	  templateCheck : /(<\s*){0,1}(\bscript)(.*?)\bsrc\s*=\s*/
 	},

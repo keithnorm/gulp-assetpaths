@@ -26,7 +26,7 @@
 	var filetypes = new RegExp('.' + opts.filetypes.join('|.'));
 	var rootRegEx = setReplacementDomain(opts.oldDomain);
 	var attrsAndProps = [
-	{ exp : /(<\s*)(.*?)\bhref\s*=\s*((["{0,1}|'{0,1}]).*?\4)(.*?)>/gi,
+	{ exp : /(<\s*)([^a]*?)\bhref\s*=\s*((["{0,1}|'{0,1}]).*?\4)(.*?)>/gi,
 	  captureGroup : 3,
 	  templateCheck : /((\bdownload)(?=(.*?)\bhref\s*=))|((\bhref\s*=)(?=(.*?)\bdownload))/
 	},
